@@ -1,18 +1,23 @@
 
 // CONTROLLERS
 
-myApp.controller('mainController', ['$scope','$resource','cityService', function($scope,$resource, cityService){
+myApp.controller('mainController', ['$scope','$location','$resource','cityService', function($scope,$location, $resource, cityService){
 
 	$scope.city = cityService.city;
 	$scope.$watch('city', function(){
 		cityService.city = $scope.city;
 	});
 
+	//move us to the forecast page
+	$scope.submit = function(){
+		$location.path("/forecast");
+
+	}
 
 
 }]);
 
-myApp.controller('forecastController', ['$scope','$resource','$routeParams', 'cityService', function($scope,$resource, $routeParams, cityService){
+myApp.controller('forecastController', ['$scope','$routeParams', 'cityService','weatherService', function($scope, $routeParams, cityService,weatherService){
 
 
 	$scope.city = cityService.city;
@@ -21,13 +26,8 @@ myApp.controller('forecastController', ['$scope','$resource','$routeParams', 'ci
 
 	$scope.days = $routeParams.days || 2;
 
-		//ng-resource weaps up the $http service in angularJS
-	$scope.weatherApi = $resource("http://api.openweathermap.org/data/2.5/forecast/daily", {
-		callback: "JSON_CALLBACK" }, { get: { method: "JSONP" } });
-
-	$scope.weatherResults = $scope.weatherApi.get({
-		q: $scope.city, cnt: $scope.days
-	});
+	//used WeatherService to call the API
+	$scope.weatherResults = weatherService.GetWeather($scope.city, $scope.days);
 
 	console.log("days: " + $scope.days);
 

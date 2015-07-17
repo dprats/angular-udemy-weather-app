@@ -6,7 +6,6 @@ myApp.config(function($routeProvider){
 	.when('/', {
 		templateUrl: '/pages/main.html',
 		controller: 'mainController'
-
 	})
 	.when('/forecast', {
 		templateUrl: 'pages/forecast.html',
@@ -15,7 +14,5 @@ myApp.config(function($routeProvider){
 	.when('/forecast/:days', {
 		templateUrl: 'pages/forecast.html',
 		controller: 'forecastController'
-	})
-
-
+	});
 });
