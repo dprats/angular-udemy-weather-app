@@ -13,26 +13,43 @@ app.get('/', function(req,res){
 });
 
 app.get('/index.html', function(req,res){
-
 	res.sendFile(path.join(__dirname + '/index.html'));
-
-});
-
-
-app.get('/app.js', function(req,res){
+})
+.get('/app.js', function(req,res){
 	console.log('called app.js');
 	res.sendFile(path.join(__dirname + '/app.js'));
 
-});
-
-app.get('/pages/main.html', function(req,res){
+})
+.get('/pages/main.html', function(req,res){
 	console.log('main requested');
 	res.sendFile(path.join(__dirname + '/pages/main.html'));
-});
-
-app.get('/pages/forecast.html', function(req,res){
+})
+.get('/pages/forecast.html', function(req,res){
 	console.log('forecast requested');
 	res.sendFile(path.join(__dirname + '/pages/forecast.html'));
+})
+.get('/routes.js', function(req,res){
+	console.log('called routes.js');
+	res.sendFile(path.join(__dirname + '/routes.js'));
+
+})
+.get('/services.js', function(req,res){
+	res.sendFile(path.join(__dirname + '/services.js'));
+
+})
+.get('/controllers.js', function(req,res){
+	console.log('called controllers.js');
+	res.sendFile(path.join(__dirname + '/controllers.js'));
+
+})
+.get('/directives.js', function(req,res){
+	console.log('called directives.js');
+	res.sendFile(path.join(__dirname + '/directives.js'));
+
+})
+.get('/directives/panel.html', function(req,res){
+	console.log('panel directive requested');
+	res.sendFile(path.join(__dirname + '/directives/panel.html'));
 });
 
 
